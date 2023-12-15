@@ -23,6 +23,7 @@ jobs:
       run: |
         if [ ! -f "gradlew" ]; then gradle wrapper; fi
         sed -i -e '40,42d' app/build.gradle
+        sed -i -e '28,31d' app/build.gradle
         sed -i -e '8,11d' app/build.gradle
         chmod +x gradlew
         ./gradlew assembleDebug
