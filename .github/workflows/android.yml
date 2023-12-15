@@ -10,6 +10,8 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v3
+      with:
+        repository: estkme-group/openeuicc
     - name: set up JDK 11
       uses: actions/setup-java@v3
       with:
@@ -17,16 +19,20 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Clone project
-      run: git clone --depth=1 https://github.com/estkme-group/openeuicc source
-
     - name: Build Apks
       working-directory: ./source
       run: |
         chmod +x gradlew
         ./gradlew assembleRelease
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v2
+      with:
+        name: my-build-apk
+        path: ./**/*.apk
+
     - name: Releasing using Hub
       uses: r0user/release-apk@main
       env:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-       APP_FOLDER: source
+       APP_FOLDER: app
