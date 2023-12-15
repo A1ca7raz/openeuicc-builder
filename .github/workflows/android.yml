@@ -22,6 +22,7 @@ jobs:
     - name: Build Apks
       run: |
         if [ ! -f "gradlew" ]; then gradle wrapper; fi
+        sed -i -e '40,42d' app/build.gradle
         chmod +x gradlew
         ./gradlew assembleDebug
 
