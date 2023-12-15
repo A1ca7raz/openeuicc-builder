@@ -20,7 +20,6 @@ jobs:
         cache: gradle
 
     - name: Build Apks
-      working-directory: ./source
       run: |
         chmod +x gradlew
         ./gradlew assembleRelease
