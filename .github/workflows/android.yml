@@ -22,7 +22,7 @@ jobs:
     - name: Build Apks
       run: |
         chmod +x gradlew
-        ./gradlew assembleRelease
+        ./gradlew build
 
     - name: Upload APK
       uses: actions/upload-artifact@v2
